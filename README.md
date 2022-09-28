@@ -1,2 +1,3 @@
 # Jump_Bot
-Jump Bot was created for Jump Voyage.
+
+Discord Bot to keep track of Jump Voyage's current project.
