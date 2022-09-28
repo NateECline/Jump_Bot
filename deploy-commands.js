@@ -6,6 +6,7 @@ const { clientId, guildId, token } = require('./config.json');
 
 
 
+
 const commands = [
     
     new SlashCommandBuilder().setName('update').setDescription('Replies with how many jumps are registered').addStringOption(option =>
