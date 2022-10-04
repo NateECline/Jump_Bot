@@ -11,7 +11,6 @@ const axios=require('axios').default;
 const {Client, GatewayIntentBits, messageLink} = require('discord.js');
 const { on } = require('events');
 const { isAnyArrayBuffer } = require('util/types');
-//const TOKEN = 'token'; // Need to create .env file to remove token from index.
 const apiEnd = 'https://6324e4ae9075b9cbee43bdd3.mockapi.io/JumpBot';    // API Resource is located in Pownin's Mock account
 const apiEPJ = 'https://6324e4ae9075b9cbee43bdd3.mockapi.io/EPJ';        // API Resource is located in Pownin's Mock account
 const apivideos = 'https://6324e4ae9075b9cbee43bdd3.mockapi.io/Videos';  // API Resource is located in Pownin's Mock account
@@ -25,7 +24,7 @@ const client = new Client({
 });
 client.login(token)
 client.on("ready", () =>{
-    console.log(`${client.user.tag} is online and fully operational!\n\nYou will see all new information added to the API within this window.`)
+    console.log(`${client.user.tag} is online and fully operational!\n\nYou will see all new information posted to the API within this window.`)
 });
 
 
@@ -205,7 +204,7 @@ client.on('interactionCreate', async interaction => {
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-// Basic Commands functioning.
+// Basic Commands.
 
 
 client.on('interactionCreate', async interaction => {
