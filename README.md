@@ -14,7 +14,7 @@ You will need to create a .env file and then add your bot token into it. Example
 
 token=yourdiscordbottoken
 
-Next you will need to create a file called config.json and you will need to add your guild id, clilent id, and token into json format in that file. example below.
+Next you will need to create a file called config.json and you will need to add your guild id, client id, and token into json format in that file. example below.
 
 {
 "clientId": "your client id",
