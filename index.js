@@ -92,56 +92,86 @@ client.on('interactionCreate', async interaction => {
 
 
 client.on('interactionCreate', async interaction => {
-    let test = ('Nothing')
-    let test1 = ('Again')
     if (!interaction.isChatInputCommand()) return;
 
         const { commandName } = interaction;
 
-         if(commandName==='updateprofile'){
+         if(commandName==='createprofile'){
+            let name = interaction.options.get('jumper-name').value
             axios.post(apiEPJ, {
-                jumper: test,
-                epjtotal: test1, 
+                jumper: name,
+                epjtotal: "0",
+                jumpnumber: 0
             })
                 .then(async function(red){ 
                     
                     await wait(4000);
-                    await interaction.editReply(`Success`)                 
+                    await interaction.editReply(`Profile ${name} was succesfully created`)
                    console.log(red)
             })
                 .catch( function(err){
                     
                     console.log(err)
                 })
-            }       else if(commandName==='get'){
+            }    else if(commandName==='updateprofile'){
+                    let var1 = interaction.options.get('jumper-number').value
+                    let var2 = interaction.options.get('add-epj').value
+                    axios.get(apiEPJ)
+
+                    .then(async (res)=>{
+                        const test = parseInt(res.data[var1].epjtotal) + parseInt(var2)
+                        const total = res.data[var1].jumpnumber + 1
+                        const id = res.data[var1].id, npt=apiEPJ + `/${id}`
+                        const avg = test/total 
+                      
+                       
+
+                        await wait(4000);
+                        
+                          console.log(test)
+
+                        axios.put(npt,{
+                        jumpnumber: total,
+                        epjtotal: `${test}`
+                        
+                    })
+                    .then(async (red)=>{
+
+                        await wait(4000);
+                        await interaction.editReply(`Name: ${res.data[var1].jumper}\nTotal EPJ: ${test}\nTotal Jumps: ${total}\nAverage EPJ: ${Math.round(avg * 100) / 100}`)
+                         
+                        })
+                        .catch(async (err)=>{
+                            await wait(4000);
+                            await interaction.editReply(`Failure:\n${err}\nhttps://cdn.ebaumsworld.com/mediaFiles/picture/2345140/84216725.jpg`)
+                            console.log(err)
+                            
+                       })
+                    })
+
                     
+                    
+
+                }
+                else if(commandName==='profiles'){
+                
                     axios.get(apiEPJ)
                     .then(async(res)=>{
-                        let nothing1 = []
+                        let nothing2 = []
                         
                         for(let i = 0; i<res.data.length; i++){
-                            nothing1[i]=`**${i+1}. Clip by:** ${res.data[i].name} \`\`\`${res.data[i].clip}\`\`\` **EPJ:** ${res.data[i].epj}\n`
+                            nothing2[i]=`\`\`\`Jumper Name: ${res.data[i].jumper}\nJumper Number: ${res.data[i].id-1}\n\`\`\``
                        }
                         
                         await wait(4000);
-                        await interaction.editReply(nothing1.join('\n'))
+                        await interaction.editReply(nothing2.join('\n'))
                     })
                     .catch(async(err)=>{
-                    await interaction.reply(`Failure:\n${err}\n${apiEPJ}\nhttps://cdn.ebaumsworld.com/mediaFiles/picture/2345140/84216725.jpg`)
+                    await interaction.reply(`Failure:\n${err}\n${apiEnd}\nhttps://cdn.ebaumsworld.com/mediaFiles/picture/2345140/84216725.jpg`)
                     })
                     
-                    
-                    
-                }else if(commandName==='update'){
-                    axios.put(apiEPJ)
 
-
-
-
-                    
-                }
-
-        });
+    }});
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -219,7 +249,7 @@ client.on('interactionCreate', async interaction => {
             await interaction.editReply(`${interaction.user.tag}`)
 
         } else if(commandName === 'commands'){
-            await interaction.editReply('**Available commands:**\n``/server | Shows Server info\n/user | Shows User Info\n/post | Creates a post for a new jump\n/jumps | Displays landed jumps\n/newvid | Creates and displays a new landed jump\n/vids | Displays all videos``')
+            await interaction.editReply('**Available commands:**\n``/server | Shows Server info\n/user | Shows User Info\n/post | Creates a post for a new jump\n/jumps | Displays landed jumps\n/newvid | Creates and displays a new landed jump\n/vids | Displays all videos\n/createprofile | Creates a new profile for a jumper\n/updateprofile | Updates a jumpers EPJ\n/profiles | Displays profiles for all jumpers``')
 
 
         }

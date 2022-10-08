@@ -9,7 +9,7 @@ const { clientId, guildId, token } = require('./config.json');
 
 const commands = [
     
-    new SlashCommandBuilder().setName('update').setDescription('Replies with how many jumps are registered').addStringOption(option =>
+    new SlashCommandBuilder().setName('updateprofile').setDescription('Replies with how many jumps are registered').addStringOption(option =>
         option.setName('jumper-number')
             .setDescription('Add the name of your map')
             .setRequired(true)
@@ -37,7 +37,11 @@ const commands = [
             .setRequired(true)
             ),
 
-    new SlashCommandBuilder().setName('createprofile').setDescription('Replies with api'),
+    new SlashCommandBuilder().setName('createprofile').setDescription('Replies with api').addStringOption(option =>
+        option.setName('jumper-name')
+            .setDescription('Add the name of your video')
+            .setRequired(true)
+            ),
     new SlashCommandBuilder().setName('newvid').setDescription('Replies with video resource').addStringOption(option =>
         option.setName('video-name')
             .setDescription('Add the name of your video')
@@ -57,8 +61,7 @@ const commands = [
     new SlashCommandBuilder().setName('user').setDescription('Replies with user info!'),
     new SlashCommandBuilder().setName('commands').setDescription('Replies with commands'),
     new SlashCommandBuilder().setName('jumps').setDescription('Replies with how many jumps are registered'),
-    new SlashCommandBuilder().setName('get').setDescription('Replies with how many jumps are registered'),
-
+    new SlashCommandBuilder().setName('profiles').setDescription('Replies with how many profiles are registered')
 
    
         
