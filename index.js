@@ -119,20 +119,19 @@ client.on('interactionCreate', async interaction => {
                     axios.get(apiEPJ)
 
                     .then(async (res)=>{
-                        const test = parseInt(res.data[var1].epjtotal) + parseInt(var2)
+                        const test = parseFloat(res.data[var1].epjtotal) + parseFloat(var2)
                         const total = res.data[var1].jumpnumber + 1
                         const id = res.data[var1].id, npt=apiEPJ + `/${id}`
-                        const avg = test/total 
+                        const avg = test/total
                       
-                       
-
                         await wait(4000);
                         
                           console.log(test)
 
                         axios.put(npt,{
                         jumpnumber: total,
-                        epjtotal: `${test}`
+                        epjtotal: `${test}`,
+                      
                         
                     })
                     .then(async (red)=>{
