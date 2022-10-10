@@ -266,7 +266,7 @@ client.on('interactionCreate', async interaction => {
             await interaction.editReply(`${interaction.user.tag}`)
 
         } else if(commandName === 'commands'){
-            await interaction.editReply('**Available commands:**\n``/server | Shows Server info\n/user | Shows User Info\n/post | Creates a post for a new jump\n/jumps | Displays landed jumps\n/newvid | Creates and displays a new landed jump\n/vids | Displays all videos\n/createprofile | Creates a new profile for a jumper\n/updateprofile | Updates a jumpers EPJ\n/profiles | Displays profiles for all jumpers``')
+            await interaction.editReply('**Available commands:**\n``/post | Creates a post for a new jump\n/jumps | Displays landed jumps\n/newvid | Creates and displays a new landed jump\n/vids | Displays all videos\n/createprofile | Creates a new profile for a jumper\n/updateprofile | Updates a jumpers EPJ\n/profiles | Displays profiles for all jumpers\n/stats | Displays group totals for jumps, epj, and epj average``')
 
 
         }
