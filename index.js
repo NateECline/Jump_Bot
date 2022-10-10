@@ -31,9 +31,7 @@ client.on("ready", () =>{
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-// First API Resource working. Establishes defer for every other block but all other blocks still need await wait(4000) added to them. 
-
-
+// First API Resource working. Establishes defer for every other block but all other blocks still need await wait(500) added to them. 
 client.on('interactionCreate', async interaction => {
     if (!interaction.isChatInputCommand()) return;
     await interaction.deferReply()
@@ -52,7 +50,7 @@ client.on('interactionCreate', async interaction => {
                 .then(async function(red){
                     
                    
-                   await wait(4000);
+                   await wait(500);
                    await interaction.editReply(`\`\`\`fix\nA new video is up!\n\`\`\`\n@everyone\n **${vidname}: ${viddate}**\nLink: ${vidlink}`)  // Need to fix link string to make it to where user doesnt need to type < link >
                     console.log(red)
                 })
@@ -70,7 +68,7 @@ client.on('interactionCreate', async interaction => {
                             nothing2[i]=`**${i+1}. ** \`\`\`${res.data[i].videoname + ': ' + res.data[i].videodate}\`\`\` __Link:__ ${res.data[i].videolink}\n`
                        }
                         
-                        await wait(4000);
+                        await wait(500);
                         await interaction.editReply(nothing2.join('\n'))
                     })
                     .catch(async(err)=>{
@@ -105,7 +103,7 @@ client.on('interactionCreate', async interaction => {
             })
                 .then(async function(red){ 
                     
-                    await wait(4000);
+                    await wait(500);
                     await interaction.editReply(`Profile ${name} was succesfully created`)
                    console.log(red)
             })
@@ -124,7 +122,7 @@ client.on('interactionCreate', async interaction => {
                         const id = res.data[var1].id, npt=apiEPJ + `/${id}`
                         const avg = test/total
                       
-                        await wait(4000);
+                        await wait(500);
                         
                           console.log(test)
 
@@ -136,12 +134,12 @@ client.on('interactionCreate', async interaction => {
                     })
                     .then(async (red)=>{
 
-                        await wait(4000);
+                        await wait(500);
                         await interaction.editReply(`\`Name:\` ${res.data[var1].jumper}\n\`Total EPJ:\` ${test}\n\`Total Jumps:\` ${total}\n\`Average EPJ:\` ${Math.round(avg * 100) / 100}`)
                          
                         })
                         .catch(async (err)=>{
-                            await wait(4000);
+                            await wait(500);
                             await interaction.editReply(`Failure:\n${err}\nhttps://cdn.ebaumsworld.com/mediaFiles/picture/2345140/84216725.jpg`)
                             console.log(err)
                             
@@ -162,7 +160,7 @@ client.on('interactionCreate', async interaction => {
                             nothing2[i]=`\`\`\`Jumper Name: ${res.data[i].jumper}\nJumper Number: ${res.data[i].id-1}\n\`\`\``
                        }
                         
-                        await wait(4000);
+                        await wait(500);
                         await interaction.editReply(nothing2.join('\n'))
                     })
                     .catch(async(err)=>{
@@ -174,13 +172,16 @@ client.on('interactionCreate', async interaction => {
                     axios.get(apiEPJ)
                     .then(async(res)=>{
                         let stats = []
-                        
+                        let epj=[]
                         for(let i = 0; i<res.data.length; i++){
-                            stats[i]=`Total Jumps: ${res.data[i].jumpnumber}\n`
+                            stats[i]=res.data[i].jumpnumber
+                            epj[i]=parseFloat(res.data[i].epjtotal)
                        }
-                        
-                        await wait(4000);
-                        await interaction.editReply(stats.join('\n'))
+                        let tater=stats.reduce((a, b)=>a+b)
+                        let tots=epj.reduce((a, b)=>a+b)
+                        let avg=tots/tater
+                        await wait(500);
+                        await interaction.editReply(`\`Group Totals:\`\n\`Jumps:\` **${tater}**\n\`EPJ:\` **${tots}**\n\`Average EPJ:\` **${Math.round(avg * 100) / 100}**`)
                     })
                     .catch(async(err)=>{
                     await interaction.reply(`Failure:\n${err}\n${apiEnd}\nhttps://cdn.ebaumsworld.com/mediaFiles/picture/2345140/84216725.jpg`)
@@ -214,7 +215,7 @@ client.on('interactionCreate', async interaction => {
                 .then(async function(red){
                     
                   
-                   await wait(4000);
+                   await wait(500);
                    await interaction.editReply(`\`\`\`fix\nA new jump has been landed!\n\`\`\`\n@everyone\n**${user}** has landed a new jump on ${mapname}\n**Clip:** ${clip}\n**EPJ:** ${EPJ}`)
                     console.log(red)
                 })
@@ -232,7 +233,7 @@ client.on('interactionCreate', async interaction => {
                             nothing[i]=`**${i+1}. Clip by:** ${res.data[i].name} \`\`\`${res.data[i].clip}\`\`\` **EPJ:** ${res.data[i].epj}\n`
                        }
                         
-                        await wait(4000);
+                        await wait(500);
                         await interaction.editReply(nothing.join('\n'))
                     })
                     .catch(async(err)=>{
@@ -257,7 +258,7 @@ client.on('interactionCreate', async interaction => {
     if (!interaction.isChatInputCommand()) return;
 
         const { commandName } = interaction;
-        await wait(4000);
+        await wait(500);
 
         if (commandName === 'server') {
             await interaction.editReply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
