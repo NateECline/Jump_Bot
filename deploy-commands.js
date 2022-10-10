@@ -56,10 +56,11 @@ const commands = [
             .setRequired(true)
             ),
 
-    new SlashCommandBuilder().setName('vids').setDescription('Replies with how many jumps are registered'),
+    new SlashCommandBuilder().setName('vids').setDescription('Replies with all videos on youtube'),
     new SlashCommandBuilder().setName('server').setDescription('Replies with server info!'),
     new SlashCommandBuilder().setName('user').setDescription('Replies with user info!'),
     new SlashCommandBuilder().setName('commands').setDescription('Replies with commands'),
+    new SlashCommandBuilder().setName('stats').setDescription('Replies with JV stats'),
     new SlashCommandBuilder().setName('jumps').setDescription('Replies with how many jumps are registered'),
     new SlashCommandBuilder().setName('profiles').setDescription('Replies with how many profiles are registered')
 

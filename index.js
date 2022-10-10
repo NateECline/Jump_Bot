@@ -168,9 +168,26 @@ client.on('interactionCreate', async interaction => {
                     .catch(async(err)=>{
                     await interaction.reply(`Failure:\n${err}\n${apiEnd}\nhttps://cdn.ebaumsworld.com/mediaFiles/picture/2345140/84216725.jpg`)
                     })
+                }
+                else if(commandName==='stats'){
+                
+                    axios.get(apiEPJ)
+                    .then(async(res)=>{
+                        let stats = []
+                        
+                        for(let i = 0; i<res.data.length; i++){
+                            stats[i]=`Total Jumps: ${res.data[i].jumpnumber}\n`
+                       }
+                        
+                        await wait(4000);
+                        await interaction.editReply(stats.join('\n'))
+                    })
+                    .catch(async(err)=>{
+                    await interaction.reply(`Failure:\n${err}\n${apiEnd}\nhttps://cdn.ebaumsworld.com/mediaFiles/picture/2345140/84216725.jpg`)
+                    })
                     
 
-    }});
+    }})
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
