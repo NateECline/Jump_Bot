@@ -137,7 +137,7 @@ client.on('interactionCreate', async interaction => {
                     .then(async (red)=>{
 
                         await wait(4000);
-                        await interaction.editReply(`Name: ${res.data[var1].jumper}\nTotal EPJ: ${test}\nTotal Jumps: ${total}\nAverage EPJ: ${Math.round(avg * 100) / 100}`)
+                        await interaction.editReply(`\`Name:\` ${res.data[var1].jumper}\n\`Total EPJ:\` ${test}\n\`Total Jumps:\` ${total}\n\`Average EPJ:\` ${Math.round(avg * 100) / 100}`)
                          
                         })
                         .catch(async (err)=>{
