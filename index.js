@@ -24,7 +24,7 @@ const client = new Client({
 });
 client.login(token)
 client.on("ready", () =>{
-    console.log(`${client.user.tag} is online and fully operational!\n\nYou will see all new information posted to the API within this window.`)
+    console.log(`${client.user.tag} is online and fully operational\n\nYou will see all new information posted to the API within this window.`)
 });
 
 
@@ -181,7 +181,7 @@ client.on('interactionCreate', async interaction => {
                         let tots=epj.reduce((a, b)=>a+b)
                         let avg=tots/tater
                         await wait(500);
-                        await interaction.editReply(`\`Group Totals:\`\n\`Jumps:\` **${tater}**\n\`EPJ:\` **${tots}**\n\`Average EPJ:\` **${Math.round(avg * 100) / 100}**`)
+                        await interaction.editReply(`**__Group Totals:__**\n\n\`Jumps:\` **${tater}**\n\`EPJ:\` **${tots}**\n\`Average EPJ:\` **${Math.round(avg * 100) / 100}**`)
                     })
                     .catch(async(err)=>{
                     await interaction.reply(`Failure:\n${err}\n${apiEnd}\nhttps://cdn.ebaumsworld.com/mediaFiles/picture/2345140/84216725.jpg`)
