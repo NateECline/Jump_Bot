@@ -273,7 +273,7 @@ client.on('interactionCreate',  async interaction => {
                 await interaction.editReply(`Success`)
                console.log(red)
         })
-            .catch( async (err)=>{
+            .catch( async function(err){
                 await interaction.editReply(`Failure:\n${err}\n${apiEnd}\nhttps://cdn.ebaumsworld.com/mediaFiles/picture/2345140/84216725.jpg`)
                 console.log(err)
             })
