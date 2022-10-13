@@ -263,7 +263,7 @@ client.on('interactionCreate',  async interaction => {
            let amount = interaction.options.get('message-amount').value 
         if(!interaction.member.permissions.has(PermissionFlagsBits.ManageMessages)) return interaction.followUp({content: `ghkoigkiugiu`})
 
-        if(amount > 1000) {
+        if(amount > 500) {
             interaction.followUp({content: `You cannot purge more than 1000 messages.`})
         } else {
             await interaction.channel.bulkDelete(amount)
