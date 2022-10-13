@@ -42,6 +42,11 @@ const commands = [
             .setDescription('Add the name of your video')
             .setRequired(true)
             ),
+    new SlashCommandBuilder().setName('deletethem').setDescription('Replies with api').addStringOption(option =>
+        option.setName('message-amount')
+            .setDescription('Enter the amount of messages you would like to purge')
+            .setRequired(true)
+            ),
     new SlashCommandBuilder().setName('newvid').setDescription('Replies with video resource').addStringOption(option =>
         option.setName('video-name')
             .setDescription('Add the name of your video')

@@ -8,7 +8,7 @@
 require('dotenv').config();
 const{ token } = process.env;
 const axios=require('axios').default;
-const {Client, GatewayIntentBits, messageLink} = require('discord.js');
+const {Client, GatewayIntentBits, PermissionFlagsBits, messageLink} = require('discord.js');
 const { on } = require('events');
 const { isAnyArrayBuffer } = require('util/types');
 const apiEnd = 'https://6324e4ae9075b9cbee43bdd3.mockapi.io/JumpBot';    // API Resource is located in Pownin's Mock account
@@ -20,6 +20,7 @@ const client = new Client({
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.GuildPresences,
     ]
 });
 client.login(token)
@@ -251,6 +252,37 @@ client.on('interactionCreate', async interaction => {
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+client.on('interactionCreate',  async interaction => {
+    if (!interaction.isChatInputCommand()) return;
+
+        const { commandName } = interaction;
+        let amount = interaction.options.get('message-amount').value
+        if (commandName === 'deletethem'){
+        if(!interaction.member.permissions.has(PermissionFlagsBits.ManageMessages)) return interaction.followUp({content: `ghkoigkiugiu`})
+
+        if(amount > 100) {
+            interaction.followUp({content: `ghgjdgjdgj`})
+        } else {
+            await interaction.channel.bulkDelete(amount)
+            .then(async function(red){ 
+                    
+                await wait(500);
+                await interaction.editReply(`Success`)
+               console.log(red)
+        })
+            .catch( async function(err){
+                await interaction.editReply(`Failure:\n${err}\n${apiEnd}\nhttps://cdn.ebaumsworld.com/mediaFiles/picture/2345140/84216725.jpg`)
+                console.log(err)
+            })
+        }
+    }
+        
+});
+
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 // Basic Commands.
 
 
@@ -258,6 +290,7 @@ client.on('interactionCreate', async interaction => {
     if (!interaction.isChatInputCommand()) return;
 
         const { commandName } = interaction;
+        
         await wait(500);
 
         if (commandName === 'server') {
@@ -267,9 +300,6 @@ client.on('interactionCreate', async interaction => {
 
         } else if(commandName === 'commands'){
             await interaction.editReply('**Available commands:**\n``/post | Creates a post for a new jump\n/jumps | Displays landed jumps\n/newvid | Creates and displays a new landed jump\n/vids | Displays all videos\n/createprofile | Creates a new profile for a jumper\n/updateprofile | Updates a jumpers EPJ\n/profiles | Displays profiles for all jumpers\n/stats | Displays group totals for jumps, epj, and epj average``')
-
-
         }
-
-        }
-);
+        
+});
