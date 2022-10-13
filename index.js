@@ -257,11 +257,12 @@ client.on('interactionCreate',  async interaction => {
     if (!interaction.isChatInputCommand()) return;
 
         const { commandName } = interaction;
-        let amount = interaction.options.get('message-amount').value
+        
         if (commandName === 'deletethem'){
+           let amount = interaction.options.get('message-amount').value 
         if(!interaction.member.permissions.has(PermissionFlagsBits.ManageMessages)) return interaction.followUp({content: `ghkoigkiugiu`})
 
-        if(amount > 100) {
+        if(amount > 1000) {
             interaction.followUp({content: `ghgjdgjdgj`})
         } else {
             await interaction.channel.bulkDelete(amount)
