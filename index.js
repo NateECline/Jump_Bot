@@ -251,7 +251,7 @@ client.on('interactionCreate', async interaction => {
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// adds delete command
+
 
 client.on('interactionCreate',  async interaction => {
     if (!interaction.isChatInputCommand()) return;
