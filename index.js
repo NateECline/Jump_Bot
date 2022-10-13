@@ -31,8 +31,8 @@ client.on("ready", () =>{
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-// First API Resource working. Establishes defer for every other block but all other blocks still need await wait(500) added to them. 
+// First API Resource working. Establishes defer for every other block but all other blocks still need await wait(500) added to them.
+ 
 client.on('interactionCreate', async interaction => {
     if (!interaction.isChatInputCommand()) return;
     await interaction.deferReply()
@@ -48,14 +48,14 @@ client.on('interactionCreate', async interaction => {
                 videolink: vidlink,
                 
             })
-                .then(async function(red){
+                .then(async (red)=>{
                     
                    
                    await wait(500);
                    await interaction.editReply(`\`\`\`fix\nA new video is up!\n\`\`\`\n@everyone\n **${vidname}: ${viddate}**\nLink: ${vidlink}`)  // Need to fix link string to make it to where user doesnt need to type < link >
                     console.log(red)
                 })
-                .catch(async function(err){
+                .catch(async (err)=>{
                     await interaction.reply(`Failure:\n${err}\nhttps://cdn.ebaumsworld.com/mediaFiles/picture/2345140/84216725.jpg`)
                     console.log(err)
                 })
@@ -87,7 +87,7 @@ client.on('interactionCreate', async interaction => {
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-// Second API resource works. 
+// Second API resource
 
 
 client.on('interactionCreate', async interaction => {
@@ -102,13 +102,13 @@ client.on('interactionCreate', async interaction => {
                 epjtotal: "0",
                 jumpnumber: 0
             })
-                .then(async function(red){ 
+                .then(async (red)=>{ 
                     
                     await wait(500);
                     await interaction.editReply(`Profile ${name} was succesfully created`)
                    console.log(red)
             })
-                .catch( function(err){
+                .catch( (err)=>{
                     
                     console.log(err)
                 })
@@ -194,7 +194,7 @@ client.on('interactionCreate', async interaction => {
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-// Third API resource works.
+// Third API resource
 
 
 client.on('interactionCreate', async interaction => {
@@ -251,6 +251,7 @@ client.on('interactionCreate', async interaction => {
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Delete Command
 
 
 client.on('interactionCreate',  async interaction => {
@@ -263,16 +264,16 @@ client.on('interactionCreate',  async interaction => {
         if(!interaction.member.permissions.has(PermissionFlagsBits.ManageMessages)) return interaction.followUp({content: `ghkoigkiugiu`})
 
         if(amount > 1000) {
-            interaction.followUp({content: `ghgjdgjdgj`})
+            interaction.followUp({content: `You cannot purge more than 1000 messages.`})
         } else {
             await interaction.channel.bulkDelete(amount)
-            .then(async function(red){ 
+            .then(async (red)=>{ 
                     
                 await wait(500);
                 await interaction.editReply(`Success`)
                console.log(red)
         })
-            .catch( async function(err){
+            .catch( async (err)=>{
                 await interaction.editReply(`Failure:\n${err}\n${apiEnd}\nhttps://cdn.ebaumsworld.com/mediaFiles/picture/2345140/84216725.jpg`)
                 console.log(err)
             })
