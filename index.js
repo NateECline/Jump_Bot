@@ -252,7 +252,7 @@ client.on('interactionCreate', async interaction => {
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//Delete Command
+//Delete Command working
 
 
 client.on('interactionCreate',  async interaction => {
