@@ -325,7 +325,7 @@ client.on('interactionCreate',  async interaction => {
     }else{
         const Embed = new EmbedBuilder()
             .setColor(0xA020F0)
-            .setTitle(`**YOU WHO HAVE DARED TO TAKE MORE THAN WHAT WAS GIVEN\n SHALL FIND THYSELF IN THE LOWEST\n PITS OF HELL AND SHAME. WE ALL BORE WITNESS\n TO YOUR FAILURE AND STUPIDITY AND WERE ALMOST\n STRUCK DOWN BY THE SHEER DESPAIR YOU\n WROUGHT UPON THIS POISONED WORLD.**\n${amount}\n is not a valid number ${interaction.user} :[ `)
+            .setDescription(`**YOU WHO HAVE DARED TO TAKE MORE THAN WHAT WAS GIVEN\n SHALL FIND THYSELF IN THE LOWEST\n PITS OF HELL AND SHAME. WE ALL BORE WITNESS\n TO YOUR FAILURE AND STUPIDITY AND WERE ALMOST\n STRUCK DOWN BY THE SHEER DESPAIR YOU\n WROUGHT UPON THIS POISONED WORLD.**\n${amount}\n is not a valid number ${interaction.user} :[ `)
             .setAuthor({name: `${interaction.user.tag}`, iconURL: `${av}`})
             .setTimestamp()
             .setFooter({ text: 'Created by OTB Development', iconURL: `${otb}` });
