@@ -323,6 +323,7 @@ client.on('interactionCreate',  async interaction => {
         await wait(500)
         await interaction.editReply(`***${amount}*** *message(s) deleted by ${interaction.user}*`)
     }else{
+        let av="https://cdn.discordapp.com/avatars/"+interaction.user.id+"/"+interaction.user.avatar+".jpeg"
         const Embed = new EmbedBuilder()
             .setColor(0xA020F0)
             .setDescription(`**YOU WHO HAVE DARED TO TAKE MORE THAN WHAT WAS GIVEN\n SHALL FIND THYSELF IN THE LOWEST\n PITS OF HELL AND SHAME. WE ALL BORE WITNESS\n TO YOUR FAILURE AND STUPIDITY AND WERE ALMOST\n STRUCK DOWN BY THE SHEER DESPAIR YOU\n WROUGHT UPON THIS POISONED WORLD.**\n${amount}\n is not a valid number ${interaction.user} :[ `)
