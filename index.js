@@ -323,8 +323,13 @@ client.on('interactionCreate',  async interaction => {
         await wait(500)
         await interaction.editReply(`***${amount}*** *message(s) deleted by ${interaction.user}*`)
     }else{
-        await wait(500)
-        await interaction.editReply(`**YOU WHO HAVE DARED TO TAKE MORE THAN WHAT WAS GIVEN SHALL FIND THYSELF IN THE LOWEST PITS OF HELL AND SHAME. WE ALL BORE WITNESS TO YOUR FAILURE AND STUPIDITY AND WERE ALMOST STRUCK DOWN BY THE SHEER DESPAIR YOU WROUGHT UPON THIS POISONED WORLD.**\n${amount} is not a valid number ${interaction.user} :[ `)
+        const Embed = new EmbedBuilder()
+            .setColor(0xA020F0)
+            .setTitle(`**YOU WHO HAVE DARED TO TAKE MORE THAN WHAT WAS GIVEN SHALL FIND THYSELF IN THE LOWEST PITS OF HELL AND SHAME. WE ALL BORE WITNESS TO YOUR FAILURE AND STUPIDITY AND WERE ALMOST STRUCK DOWN BY THE SHEER DESPAIR YOU WROUGHT UPON THIS POISONED WORLD.**\n${amount} is not a valid number ${interaction.user} :[ `)
+            .setAuthor({name: `${interaction.user.tag}`, iconURL: `${av}`})
+            .setTimestamp()
+            .setFooter({ text: 'Created by OTB Development', iconURL: `${otb}` });
+            await interaction.editReply({ embeds: [Embed] })
     }
     }
         
