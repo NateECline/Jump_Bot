@@ -268,55 +268,55 @@ client.on('interactionCreate',  async interaction => {
             break;
             case amount<=200:
                 for(let i=0;i<1;i++){
-                    await interaction.channel.bulkDelete(100)
+                    await interaction.channel.bulkDelete(100, true)
                 }
                 await interaction.channel.bulkDelete(amount-100)
             break;
             case amount<=300:
                 for(let i=0;i<2;i++){
-                    await interaction.channel.bulkDelete(100)
+                    await interaction.channel.bulkDelete(100, true)
                 }
                 await interaction.channel.bulkDelete(amount-200)
             break;
             case amount<=400:
                 for(let i=0;i<3;i++){
-                    await interaction.channel.bulkDelete(100)
+                    await interaction.channel.bulkDelete(100, true)
                 }
                 await interaction.channel.bulkDelete(amount-300)
             break;
             case amount<=500:
                 for(let i=0;i<4;i++){
-                    await interaction.channel.bulkDelete(100)
+                    await interaction.channel.bulkDelete(100, true)
                 }
                 await interaction.channel.bulkDelete(amount-400)
             break;
             case amount<=600:
                 for(let i=0;i<5;i++){
-                    await interaction.channel.bulkDelete(100)
+                    await interaction.channel.bulkDelete(100, true)
                 }
                 await interaction.channel.bulkDelete(amount-500)
             break;
             case amount<=700:
                 for(let i=0;i<6;i++){
-                    await interaction.channel.bulkDelete(100)
+                    await interaction.channel.bulkDelete(100, true)
                 }
                 await interaction.channel.bulkDelete(amount-600)
             break;
             case amount<=800:
                 for(let i=0;i<7;i++){
-                    await interaction.channel.bulkDelete(100)
+                    await interaction.channel.bulkDelete(100, true)
                 }
                 await interaction.channel.bulkDelete(amount-700)
             break;
             case amount<=900:
                 for(let i=0;i<8;i++){
-                    await interaction.channel.bulkDelete(100)
+                    await interaction.channel.bulkDelete(100, true)
                 }
                 await interaction.channel.bulkDelete(amount-800)                
             break;
             default:
                 for(let i=0;i<9;i++){
-                    await interaction.channel.bulkDelete(100)
+                    await interaction.channel.bulkDelete(100, true)
                 }
                 await interaction.channel.bulkDelete(amount-900)
         }
