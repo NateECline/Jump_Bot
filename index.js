@@ -260,23 +260,14 @@ client.on('interactionCreate',  async interaction => {
         const { commandName } = interaction;
         
         if (commandName === 'deletethem'){
-           let amount = interaction.options.get('message-amount').value 
+        let amount = interaction.options.get('message-amount').value 
         if(!interaction.member.permissions.has(PermissionFlagsBits.ManageMessages)) return interaction.followUp({content: `ghkoigkiugiu`})
 
-        if(amount > 500) {
+        if(amount > 1000) {
             interaction.followUp({content: `You cannot purge more than 1000 messages.`})
         } else {
             await interaction.channel.bulkDelete(amount)
-            .then(async (red)=>{ 
-                    
-                await wait(500);
-                await interaction.editReply(`Success`)
-               console.log(red)
-        })
-            .catch( async function(err){
-                await interaction.editReply(`Failure:\n${err}\n${apiEnd}\nhttps://cdn.ebaumsworld.com/mediaFiles/picture/2345140/84216725.jpg`)
-                console.log(err)
-            })
+            
         }
     }
         
