@@ -321,7 +321,7 @@ client.on('interactionCreate',  async interaction => {
                 await interaction.channel.bulkDelete(amount-900)
         }
         await wait(500)
-        await interaction.editReply(`***${amount}*** *messages deleted by ${interaction.user}*`)
+        await interaction.editReply(`***${amount}*** *message(s) deleted by ${interaction.user}*`)
     }else{
         await wait(500)
         await interaction.editReply(`**YOU WHO HAVE DARED TO TAKE MORE THAN WHAT WAS GIVEN SHALL FIND THYSELF IN THE LOWEST PITS OF HELL AND SHAME. WE ALL BORE WITNESS TO YOUR FAILURE AND STUPIDITY AND WERE ALMOST STRUCK DOWN BY THE SHEER DESPAIR YOU WROUGHT UPON THIS POISONED WORLD.**\n${amount} is not a valid number ${interaction.user} :[ `)
