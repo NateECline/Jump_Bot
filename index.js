@@ -8,12 +8,13 @@
 require('dotenv').config();
 const{ token } = process.env;
 const axios=require('axios').default;
-const {Client, GatewayIntentBits, PermissionFlagsBits, messageLink} = require('discord.js');
+const {Client, GatewayIntentBits, EmbedBuilder, messageLink} = require('discord.js');
 const { on } = require('events');
 const { isAnyArrayBuffer } = require('util/types');
 const apiEnd = 'https://6324e4ae9075b9cbee43bdd3.mockapi.io/JumpBot';    // API Resource is located in Pownin's Mock account
 const apiEPJ = 'https://6324e4ae9075b9cbee43bdd3.mockapi.io/EPJ';        // API Resource is located in Pownin's Mock account
 const apivideos = 'https://6324e4ae9075b9cbee43bdd3.mockapi.io/Videos';  // API Resource is located in Pownin's Mock account
+const otb='https://cdn.discordapp.com/attachments/951019776141037568/1030381797080571914/smile.png'
 const wait = require('node:timers/promises').setTimeout;
 const client = new Client({
     intents: [
@@ -25,7 +26,7 @@ const client = new Client({
 });
 client.login(token)
 client.on("ready", () =>{
-    console.log(`${client.user.tag} is online and fully operational\n\nYou will see all new information posted to the API within this window.`)
+    console.log(`${client.user.tag} is online and fully operational`)
 });
 
 
@@ -257,12 +258,9 @@ client.on('interactionCreate', async interaction => {
 
 client.on('interactionCreate',  async interaction => {
     if (!interaction.isChatInputCommand()) return;
-
         const { commandName } = interaction;
-        
         if (commandName === 'deletethem'){
         let amount = interaction.options.get('message-amount').value 
-        if(!interaction.member.permissions.has(PermissionFlagsBits.ManageMessages)) return interaction.followUp({content: `ghkoigkiugiu`})
         if(amount<=1000){
         switch(true){
             case amount<=100:
@@ -339,6 +337,7 @@ client.on('interactionCreate',  async interaction => {
 
 
 client.on('interactionCreate', async interaction => {
+    let av="https://cdn.discordapp.com/avatars/"+interaction.user.id+"/"+interaction.user.avatar+".jpeg"
     if (!interaction.isChatInputCommand()) return;
 
         const { commandName } = interaction;
@@ -351,7 +350,35 @@ client.on('interactionCreate', async interaction => {
             await interaction.editReply(`${interaction.user.tag}`)
 
         } else if(commandName === 'commands'){
-            await interaction.editReply('**Available commands:**\n``/post | Creates a post for a new jump\n/jumps | Displays landed jumps\n/newvid | Creates and displays a new landed jump\n/vids | Displays all videos\n/createprofile | Creates a new profile for a jumper\n/updateprofile | Updates a jumpers EPJ\n/profiles | Displays profiles for all jumpers\n/stats | Displays group totals for jumps, epj, and epj average``')
+            const Embed = new EmbedBuilder()
+            .setColor(0xA020F0)
+            .setTitle(`:ballot_box_with_check: __Command List__`)
+            .setDescription('***Use all below commands with the "/" prefix***')
+            .setAuthor({name: `${interaction.user.tag}`, iconURL: `${av}`})
+            .addFields(
+                { name: 'Post', value: 'Creates a post for a new jump'},
+                { name: 'Jumps', value: 'Displays landed jumps'},
+                { name: 'NewVid', value: 'Creates and display a new landed jump'},
+                { name: 'Vids', value: 'Displays All Videos'},
+                { name: 'CreateProfile', value: 'Creates a profile for a jumper'},
+                { name: 'UpdateProfile', value: 'Updates a jumpers EPJ'},
+                { name: 'Profiles', value: 'Displays profiles for all jumpers'},
+                { name: 'Stats', value: 'Displays group totals for jumps, EPJ, and EPJ average'},
+                { name: 'DeleteThem', value: 'Deletes messages in bulk - limit is 1000 messages at a time'},
+                { name: 'Avatar', value: 'Displays a users avatar'},
+            )
+            .setTimestamp()
+            .setFooter({ text: 'Created by OTB Development', iconURL: `${otb}` });
+            await interaction.editReply({ embeds: [Embed] })
+        }else if(commandName==='avatar'){
+            const avatar = new EmbedBuilder()
+            .setColor(0xA020F0)
+            .setTitle(`Avatar`)
+            .setAuthor({name: `${interaction.user.tag}`, iconURL: `${av}`})
+            .setImage(`${av}`)
+            .setTimestamp()
+            .setFooter({ text: 'Created by OTB Development', iconURL: `${otb}` });
+            await interaction.editReply({ embeds: [avatar] })
         }
         
 });

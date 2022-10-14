@@ -11,17 +11,17 @@ const commands = [
     
     new SlashCommandBuilder().setName('updateprofile').setDescription('Replies with how many jumps are registered').addStringOption(option =>
         option.setName('jumper-number')
-            .setDescription('Add the name of your map')
+            .setDescription('Add the number that cooresponds to the jumpers profile you want to update')
             .setRequired(true)
             ).addStringOption(option =>
         option.setName('add-epj')
-            .setDescription('Add the name of your clip')
+            .setDescription('Add the epj for the jumper')
             .setRequired(true)
             ),
 
     new SlashCommandBuilder().setName('post').setDescription('Replies with api').addStringOption(option =>
         option.setName('user-name')
-            .setDescription('Add the name of your map')
+            .setDescription('Add the name of the jumper who completed the jump')
             .setRequired(true)
             ).addStringOption(option =>
         option.setName('clip-name')
@@ -39,12 +39,12 @@ const commands = [
 
     new SlashCommandBuilder().setName('createprofile').setDescription('Replies with api').addStringOption(option =>
         option.setName('jumper-name')
-            .setDescription('Add the name of your video')
+            .setDescription('Add the name of the jumper you want the profile to be associated with')
             .setRequired(true)
             ),
     new SlashCommandBuilder().setName('deletethem').setDescription('Replies with api').addStringOption(option =>
         option.setName('message-amount')
-            .setDescription('Enter the amount of messages you would like to purge')
+            .setDescription('Enter the amount of messages you would like to delete')
             .setRequired(true)
             ),
     new SlashCommandBuilder().setName('newvid').setDescription('Replies with video resource').addStringOption(option =>
@@ -67,7 +67,8 @@ const commands = [
     new SlashCommandBuilder().setName('commands').setDescription('Replies with commands'),
     new SlashCommandBuilder().setName('stats').setDescription('Replies with JV stats'),
     new SlashCommandBuilder().setName('jumps').setDescription('Replies with how many jumps are registered'),
-    new SlashCommandBuilder().setName('profiles').setDescription('Replies with how many profiles are registered')
+    new SlashCommandBuilder().setName('profiles').setDescription('Replies with how many profiles are registered'),
+    new SlashCommandBuilder().setName('avatar').setDescription('Replies with a users avatar')
 
    
         
