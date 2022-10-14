@@ -8,7 +8,7 @@
 require('dotenv').config();
 const{ token } = process.env;
 const axios=require('axios').default;
-const {Client, GatewayIntentBits, messageLink} = require('discord.js');
+const {Client, GatewayIntentBits, PermissionFlagsBits, messageLink} = require('discord.js');
 const { on } = require('events');
 const { isAnyArrayBuffer } = require('util/types');
 const apiEnd = 'https://6324e4ae9075b9cbee43bdd3.mockapi.io/JumpBot';    // API Resource is located in Pownin's Mock account
@@ -20,18 +20,19 @@ const client = new Client({
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.GuildPresences,
     ]
 });
 client.login(token)
 client.on("ready", () =>{
-    console.log(`${client.user.tag} is online and fully operational!\n\nYou will see all new information posted to the API within this window.`)
+    console.log(`${client.user.tag} is online and fully operational\n\nYou will see all new information posted to the API within this window.`)
 });
 
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-// First API Resource working. Establishes defer for every other block but all other blocks still need await wait(500) added to them. 
+// First API Resource working. Establishes defer for every other block but all other blocks still need await wait(500) added to them.
+ 
 client.on('interactionCreate', async interaction => {
     if (!interaction.isChatInputCommand()) return;
     await interaction.deferReply()
@@ -47,14 +48,14 @@ client.on('interactionCreate', async interaction => {
                 videolink: vidlink,
                 
             })
-                .then(async function(red){
+                .then(async (red)=>{
                     
                    
                    await wait(500);
                    await interaction.editReply(`\`\`\`fix\nA new video is up!\n\`\`\`\n@everyone\n **${vidname}: ${viddate}**\nLink: ${vidlink}`)  // Need to fix link string to make it to where user doesnt need to type < link >
                     console.log(red)
                 })
-                .catch(async function(err){
+                .catch(async (err)=>{
                     await interaction.reply(`Failure:\n${err}\nhttps://cdn.ebaumsworld.com/mediaFiles/picture/2345140/84216725.jpg`)
                     console.log(err)
                 })
@@ -86,7 +87,7 @@ client.on('interactionCreate', async interaction => {
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-// Second API resource works. 
+// Second API resource
 
 
 client.on('interactionCreate', async interaction => {
@@ -101,13 +102,13 @@ client.on('interactionCreate', async interaction => {
                 epjtotal: "0",
                 jumpnumber: 0
             })
-                .then(async function(red){ 
+                .then(async (red)=>{ 
                     
                     await wait(500);
                     await interaction.editReply(`Profile ${name} was succesfully created`)
                    console.log(red)
             })
-                .catch( function(err){
+                .catch( (err)=>{
                     
                     console.log(err)
                 })
@@ -194,7 +195,7 @@ client.on('interactionCreate', async interaction => {
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-// Third API resource works.
+// Third API resource
 
 
 client.on('interactionCreate', async interaction => {
@@ -251,6 +252,30 @@ client.on('interactionCreate', async interaction => {
 
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Delete Command
+
+
+client.on('interactionCreate',  async interaction => {
+    if (!interaction.isChatInputCommand()) return;
+
+        const { commandName } = interaction;
+        
+        if (commandName === 'deletethem'){
+        let amount = interaction.options.get('message-amount').value 
+        if(!interaction.member.permissions.has(PermissionFlagsBits.ManageMessages)) return interaction.followUp({content: `ghkoigkiugiu`})
+
+        if(amount > 1000) {
+            interaction.followUp({content: `You cannot purge more than 1000 messages.`})
+        } else {
+            await interaction.channel.bulkDelete(amount)
+            
+        }
+    }
+        
+});
+
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // Basic Commands.
 
@@ -259,6 +284,7 @@ client.on('interactionCreate', async interaction => {
     if (!interaction.isChatInputCommand()) return;
 
         const { commandName } = interaction;
+        
         await wait(500);
 
         if (commandName === 'server') {
@@ -267,10 +293,7 @@ client.on('interactionCreate', async interaction => {
             await interaction.editReply(`${interaction.user.tag}`)
 
         } else if(commandName === 'commands'){
-            await interaction.editReply('**Available commands:**\n``/server | Shows Server info\n/user | Shows User Info\n/post | Creates a post for a new jump\n/jumps | Displays landed jumps\n/newvid | Creates and displays a new landed jump\n/vids | Displays all videos\n/createprofile | Creates a new profile for a jumper\n/updateprofile | Updates a jumpers EPJ\n/profiles | Displays profiles for all jumpers``')
-
-
+            await interaction.editReply('**Available commands:**\n``/post | Creates a post for a new jump\n/jumps | Displays landed jumps\n/newvid | Creates and displays a new landed jump\n/vids | Displays all videos\n/createprofile | Creates a new profile for a jumper\n/updateprofile | Updates a jumpers EPJ\n/profiles | Displays profiles for all jumpers\n/stats | Displays group totals for jumps, epj, and epj average``')
         }
-
-        }
-);
+        
+});
