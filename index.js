@@ -157,7 +157,8 @@ client.on('interactionCreate', async interaction => {
                         let nothing2 = []
                         
                         for(let i = 0; i<res.data.length; i++){
-                            nothing2[i]=`\`\`\`Jumper Name: ${res.data[i].jumper}\nJumper Number: ${res.data[i].id-1}\n\`\`\``
+                            let avg=res.data[i].epjtotal/res.data[i].jumpnumber
+                            nothing2[i]=`\`\`\`Jumper: ${res.data[i].jumper}\nJumps: ${res.data[i].jumpnumber}\nEPJ: ${res.data[i].epjtotal}\nAverage EPJ: ${Math.round(avg * 100) / 100}\`\`\``
                        }
                         
                         await wait(500);
@@ -181,7 +182,7 @@ client.on('interactionCreate', async interaction => {
                         let tots=epj.reduce((a, b)=>a+b)
                         let avg=tots/tater
                         await wait(500);
-                        await interaction.editReply(`\`Group Totals:\`\n\`Jumps:\` **${tater}**\n\`EPJ:\` **${tots}**\n\`Average EPJ:\` **${Math.round(avg * 100) / 100}**`)
+                        await interaction.editReply(`**__Group Totals:__**\n\n\`Jumps:\` **${tater}**\n\`EPJ:\` **${tots}**\n\`Average EPJ:\` **${Math.round(avg * 100) / 100}**`)
                     })
                     .catch(async(err)=>{
                     await interaction.reply(`Failure:\n${err}\n${apiEnd}\nhttps://cdn.ebaumsworld.com/mediaFiles/picture/2345140/84216725.jpg`)
