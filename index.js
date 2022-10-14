@@ -263,13 +263,71 @@ client.on('interactionCreate',  async interaction => {
         if (commandName === 'deletethem'){
         let amount = interaction.options.get('message-amount').value 
         if(!interaction.member.permissions.has(PermissionFlagsBits.ManageMessages)) return interaction.followUp({content: `ghkoigkiugiu`})
-
-        if(amount > 1000) {
-            interaction.followUp({content: `You cannot purge more than 1000 messages.`})
-        } else {
-            await interaction.channel.bulkDelete(amount)
-            
+        if(amount<=1000){
+        switch(true){
+            case amount<=100:
+                await interaction.channel.bulkDelete(amount)   
+            break;
+            case amount<=200:
+                for(let i=0;i<1;i++){
+                    await interaction.channel.bulkDelete(100)
+                }
+                await interaction.channel.bulkDelete(amount-100)
+            break;
+            case amount<=300:
+                for(let i=0;i<2;i++){
+                    await interaction.channel.bulkDelete(100)
+                }
+                await interaction.channel.bulkDelete(amount-200)
+            break;
+            case amount<=400:
+                for(let i=0;i<3;i++){
+                    await interaction.channel.bulkDelete(100)
+                }
+                await interaction.channel.bulkDelete(amount-300)
+            break;
+            case amount<=500:
+                for(let i=0;i<4;i++){
+                    await interaction.channel.bulkDelete(100)
+                }
+                await interaction.channel.bulkDelete(amount-400)
+            break;
+            case amount<=600:
+                for(let i=0;i<5;i++){
+                    await interaction.channel.bulkDelete(100)
+                }
+                await interaction.channel.bulkDelete(amount-500)
+            break;
+            case amount<=700:
+                for(let i=0;i<6;i++){
+                    await interaction.channel.bulkDelete(100)
+                }
+                await interaction.channel.bulkDelete(amount-600)
+            break;
+            case amount<=800:
+                for(let i=0;i<7;i++){
+                    await interaction.channel.bulkDelete(100)
+                }
+                await interaction.channel.bulkDelete(amount-700)
+            break;
+            case amount<=900:
+                for(let i=0;i<8;i++){
+                    await interaction.channel.bulkDelete(100)
+                }
+                await interaction.channel.bulkDelete(amount-800)                
+            break;
+            default:
+                for(let i=0;i<9;i++){
+                    await interaction.channel.bulkDelete(100)
+                }
+                await interaction.channel.bulkDelete(amount-900)
         }
+        await wait(500)
+        await interaction.editReply(`***${amount}*** *messages deleted by ${interaction.user}*`)
+    }else{
+        await wait(500)
+        await interaction.editReply(`**YOU WHO HAVE DARED TO TAKE MORE THAN WHAT WAS GIVEN SHALL FIND THYSELF IN THE LOWEST PITS OF HELL AND SHAME. WE ALL BORE WITNESS TO YOUR FAILURE AND STUPIDITY AND WERE ALMOST STRUCK DOWN BY THE SHEER DESPAIR YOU WROUGHT UPON THIS FAILING WORLD.**\n${amount} is not a valid number ${interaction.user} :[ `)
+    }
     }
         
 });
