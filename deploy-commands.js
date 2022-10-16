@@ -68,7 +68,8 @@ const commands = [
     new SlashCommandBuilder().setName('stats').setDescription('Replies with JV stats'),
     new SlashCommandBuilder().setName('jumps').setDescription('Replies with how many jumps are registered'),
     new SlashCommandBuilder().setName('profiles').setDescription('Replies with how many profiles are registered'),
-    new SlashCommandBuilder().setName('avatar').setDescription('Replies with a users avatar')
+    new SlashCommandBuilder().setName('avatar').setDescription('Replies with a users avatar'),
+    new SlashCommandBuilder().setName('add').setDescription('Replies with a users avatar')
 
    
         
