@@ -393,3 +393,33 @@ client.on('interactionCreate', async interaction => {
         }
         }
 });
+
+
+
+client.on("guildMemberAdd", async user=>{
+	const channel = client.channels.cache.get('708386333365633148')
+	const channel2 = client.channels.cache.get('923463210483462156')
+	const d = new Date( user.joinedTimestamp )
+	if(d.getMinutes()<10){
+		date = d.toDateString()+' at '+d.getHours() + ":0" + d.getMinutes();
+	}else{
+		date = d.toDateString()+' at '+d.getHours() + ":" + d.getMinutes();
+	}
+	const hoi = new EmbedBuilder()
+	    .setColor(0x000000)
+	    .setTitle(`${user.user.username}#${user.user.discriminator} **has joined our little section of Hell~**`)
+		channel.send({ embeds: [hoi] })
+	let av="https://cdn.discordapp.com/avatars/"+user.user.id+"/"+user.user.avatar+".jpeg"
+	const welcome = new EmbedBuilder()
+	    .setColor(0xA020F0)
+	    .setTitle(`New User:`)
+		.setDescription(`${user.user.username}#${user.user.discriminator}`)
+		.addFields(
+			{ name: 'Joined:', value: `${date}` }
+		)
+        .setThumbnail(`${av}`)
+	    .setTimestamp()
+	    .setFooter({ text: 'Created by OTB Development', iconURL: `${otb}` });
+        channel2.send({ embeds: [welcome] })
+		console.log(user)
+});
