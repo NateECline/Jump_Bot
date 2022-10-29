@@ -388,7 +388,7 @@ client.on('interactionCreate', async interaction => {
             await interaction.editReply({ embeds: [avatar] })
         }else if(commandName==='add'){
             await interaction.editReply('1')
-            for(let i=1;i<1000;i++){
+            for(let i=1;i<100;i++){
                 await interaction.followUp(`${i+1}`)
         }
         }
