@@ -406,7 +406,7 @@ client.on("guildMemberAdd", async user=>{
 		date = d.toDateString()+' at '+d.getHours() + ":" + d.getMinutes();
 	}
 	const hoi = new EmbedBuilder()
-	    .setColor(0x000000)
+	    .setColor(0xffbb00)
 	    .setTitle(`**Lets give a warm welcome to** ${user.user}!`)
         .setDescription(`We are now ${interaction.guild.memberCount} strong!`)
 		channel.send({ embeds: [hoi] })
