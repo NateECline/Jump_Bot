@@ -407,7 +407,8 @@ client.on("guildMemberAdd", async user=>{
 	}
 	const hoi = new EmbedBuilder()
 	    .setColor(0x000000)
-	    .setTitle(`${user.user.username}#${user.user.discriminator} **has joined our little section of Hell~**`)
+	    .setTitle(`**Lets give a warm welcome to** ${user.user}!`)
+        .setDescription(`We are now ${interaction.guild.memberCount} strong!`)
 		channel.send({ embeds: [hoi] })
 	let av="https://cdn.discordapp.com/avatars/"+user.user.id+"/"+user.user.avatar+".jpeg"
 	const welcome = new EmbedBuilder()
@@ -422,4 +423,6 @@ client.on("guildMemberAdd", async user=>{
 	    .setFooter({ text: 'Created by OTB Development', iconURL: `${otb}` });
         channel2.send({ embeds: [welcome] })
 		console.log(user)
+        let role = user.guild.roles.cache.find(r => r.name === "New Member");
+        user.roles.add(role)
 });
