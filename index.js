@@ -397,18 +397,22 @@ client.on('interactionCreate', async interaction => {
 
 
 client.on("guildMemberAdd", async user=>{
-	const channel = client.channels.cache.get('708386333365633148')
-	const channel2 = client.channels.cache.get('923463210483462156')
+	const channel = client.channels.cache.get('875469457164734565') // General Channel ID
+	const channel2 = client.channels.cache.get('1026924446721769482') // Logs ID
 	const d = new Date( user.joinedTimestamp )
 	if(d.getMinutes()<10){
 		date = d.toDateString()+' at '+d.getHours() + ":0" + d.getMinutes();
 	}else{
 		date = d.toDateString()+' at '+d.getHours() + ":" + d.getMinutes();
 	}
+    console.log(user.user)
 	const hoi = new EmbedBuilder()
-	    .setColor(0xffbb00)
-	    .setTitle(`**Lets give a warm welcome to** ${user.user}!`)
-        .setDescription(`We are now ${interaction.guild.memberCount} strong!`)
+    
+	    .setColor(0xA020F0)
+	    .setDescription(`**Lets give a warm welcome to** ${user.user}!`)
+        .addFields(
+            { name: `**We are now ${user.guild.memberCount} strong!**\n`, value:`Please Read <#875486942895157268>`}
+        )
 		channel.send({ embeds: [hoi] })
 	let av="https://cdn.discordapp.com/avatars/"+user.user.id+"/"+user.user.avatar+".jpeg"
 	const welcome = new EmbedBuilder()
